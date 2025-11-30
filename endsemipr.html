@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Exam Notes: IPR & IB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper-color: #fdfbf7;
+            --line-color: #aebcd6;
+            --ink-color: #2c3e50;
+            --highlight-yellow: rgba(255, 255, 0, 0.4);
+            --highlight-green: rgba(144, 238, 144, 0.4);
+            --highlight-pink: rgba(255, 182, 193, 0.4);
+            --highlight-blue: rgba(173, 216, 230, 0.4);
+            --box-border: #d35400;
+        }
+
+        body {
+            background-color: #4a4a4a;
+            background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%235c5c5c' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM1 23h40v20H1V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            font-family: 'Kalam', cursive;
+            color: var(--ink-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.5;
+        }
+
+        /* The A4 Paper Container */
+        .paper {
+            background-color: var(--paper-color);
+            width: 100%;
+            max-width: 210mm;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
+            background-size: 100% 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        /* Margin line */
+        .paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            height: 100%;
+            width: 2px;
+            background-color: rgba(255, 99, 71, 0.5);
+        }
+
+        h1 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.8rem;
+            text-align: center;
+            color: #2c3e50;
+            text-decoration: underline;
+            text-decoration-color: #c0392b;
+            margin-bottom: 20px;
+            transform: rotate(-1deg);
+        }
+
+        h2 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2rem;
+            color: #d35400;
+            border-bottom: 3px solid #d35400;
+            display: inline-block;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #2980b9;
+            font-weight: 700;
+        }
+        
+        h4 {
+            font-size: 1.3rem;
+            margin: 15px 0 5px 0;
+            text-decoration: underline;
+            color: #555;
+        }
+
+        p, li {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            padding-left: 5px;
+        }
+
+        /* Highlighters */
+        .hl-yellow { background: linear-gradient(120deg, transparent 0%, var(--highlight-yellow) 100%); padding: 0 5px; border-radius: 3px; }
+        .hl-green { background-color: var(--highlight-green); padding: 0 5px; border-radius: 3px; }
+        .hl-pink { background-color: var(--highlight-pink); padding: 0 5px; border-radius: 3px; }
+        .hl-blue { background-color: var(--highlight-blue); padding: 0 5px; border-radius: 3px; }
+
+        /* Doodle Boxes */
+        .box {
+            border: 2px solid #7f8c8d;
+            border-radius: 15px 255px 15px 25px / 255px 15px 225px 15px;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: rgba(255,255,255,0.6);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
+        }
+        
+        .box-title {
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 1.4rem; 
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            width: 160px;
+            background: #fff9c4;
+            padding: 15px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            font-family: 'Patrick Hand', cursive;
+            transform: rotate(2deg);
+            z-index: 100;
+            border: 1px solid #fbc02d;
+        }
+
+        .sticky-nav a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            border-bottom: 1px dashed #aaa;
+            padding: 5px 0;
+        }
+        
+        .sticky-nav a:hover {
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        @media (max-width: 900px) {
+            .sticky-nav { display: none; }
+            .paper { padding: 30px; }
+            .paper::before { left: 20px; }
+        }
+        
+        .section-break {
+            text-align: center;
+            font-size: 2rem;
+            color: #bdc3c7;
+            margin: 40px 0;
+        }
+        
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .sub-point {
+            margin-left: 20px;
+            font-size: 1.1rem;
+            color: #555;
+            list-style-type: circle;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sticky-nav">
+        <strong>Quick Jump:</strong>
+        <a href="#part1">1. IPR & Social Dev</a>
+        <a href="#gains">Promised Gains</a>
+        <a href="#costs">Potential Costs</a>
+        <a href="#evidence">The Evidence</a>
+        <a href="#policy">Policy Lessons</a>
+        <a href="#part2">2. Int. Business</a>
+        <a href="#risks">The 4 Risks</a>
+        <a href="#participants">Participants</a>
+        <a href="#why">Why Go Global?</a>
+    </div>
+
+    <div class="paper">
+        <h1>Detailed Exam Notes: IPR & IB</h1>
+        <p style="text-align: right;"><b>Study Material:</b> WIPO Slides + Pearson Textbook</p>
+
+        <!-- PART 1 -->
+        <div id="part1">
+            <h2>Part 1: IPR & Social Development</h2>
+            <p><i>(Source: WIPO Document)</i></p>
+
+            <h3>1. Defining Social Development</h3>
+            <p>It's broad, but for this exam, it means two things:</p>
+            <ul>
+                <li>Establishment of markets and institutions that help <span class="hl-yellow">living standards grow sustainably</span>.</li>
+                <li>Increasing the ability of society (govt, schools, hospitals) to meet citizens' needs for well-being.</li>
+            </ul>
+            <p><span class="important">KEY CONCEPT:</span> IPR is not enough on its own. It must be embedded in a broader system including:</p>
+            <ul>
+                <li>Innovation & Growth policies.</li>
+                <li>Competition & Regulation.</li>
+                <li>Education, Public Health, & Access to Knowledge.</li>
+            </ul>
+
+            <div id="gains" class="box">
+                <div class="box-title">The "Promised Gains" of Global IPR</div>
+                <p>Advocates say a strong system brings these 8 benefits:</p>
+                <ul>
+                    <li><b>Innovation Incentives:</b> Motivates people to invent worldwide.</li>
+                    <li><b>Help for Poor:</b> Encourages R&D for products poor countries need.</li>
+                    <li><b>Trade & Investment:</b> Expands trade in high-tech goods.</li>
+                    <li><b>Knowledge Transfer:</b> Creates a market to sell/share ideas across borders.</li>
+                    <li><b>Consumer Protection:</b> Guarantees where a product comes from (Origin).</li>
+                    <li><b>Creativity:</b> Builds markets for creative works (music, art).</li>
+                    <li><b>Price Differentiation:</b> Allows charging different prices in different markets.</li>
+                    <li><b>Traditional Knowledge:</b> Protects local/indigenous wisdom.</li>
+                </ul>
+            </div>
+
+            <div id="costs" class="box" style="border-color: #c0392b;">
+                <div class="box-title">The "Potential Costs" (Downsides)</div>
+                <ul>
+                    <li><b>High Admin Costs:</b> Enforcement and running the system is expensive.</li>
+                    <li><b>Market Power:</b> Can lead to <span class="hl-pink">monopolies</span> if competition rules are weak.</li>
+                    <li><b>Licensing Abuse:</b> Companies might refuse to license or charge too much.</li>
+                    <li><b>Blocking Innovation:</b> Unbalanced rules can stop others from improving an invention.</li>
+                    <li><b>Higher Prices:</b> Medicines, farming seeds, and green tech might get expensive.</li>
+                    <li><b>Restricted Access:</b> Strict copyright makes it hard to get educational/scientific materials.</li>
+                </ul>
+            </div>
+
+            <h3 id="evidence">2. The Evidence from Research</h3>
+            <p><i>(Warning: Research is hard because data is scarce and causation is tricky!)</i></p>
+
+            <h4>A. Impact on Innovation</h4>
+            <ul>
+                <li><span class="hl-green">Rich Countries:</span> No big increase in innovation just because of IPR.</li>
+                <li><span class="hl-green">Emerging Economies (China/India):</span> Yes, they are innovating and exporting more tech.</li>
+                <li><span class="hl-green">Poor Countries:</span> <span class="important">Little evidence</span> that IPR helps them innovate.</li>
+                <li><b>Trademarks:</b> Helpful for building product markets in developing nations.</li>
+            </ul>
+
+            <h4>B. Technology Transfer (Sharing Tech)</h4>
+            <ul>
+                <li>Stronger IPR helps bring tech into a country through <b>market channels</b> (selling/licensing).</li>
+                <li><b>The "Threshold" Effect:</b> This only works if the country has:
+                    <ul class="sub-point">
+                        <li>Educated people (Human Capital).</li>
+                        <li>Effective domestic competition.</li>
+                        <li>Good governance & infrastructure.</li>
+                    </ul>
+                </li>
+                <li>It does <span class="important">NOT</span> work well for the poorest countries.</li>
+            </ul>
+
+            <h4>C. Pharmaceuticals (Drugs) & R&D</h4>
+            <ul>
+                <li><b>Rich Countries:</b> Stronger laws = More R&D.</li>
+                <li><b>Developing Countries:</b> Stronger laws = <span class="hl-pink">NO increase</span> in local R&D.</li>
+                <li><b>Neglected Diseases:</b> No increase in private research for diseases affecting the poor.</li>
+                <li><b>India Case Study:</b> After 2005 patent law, big Indian firms spent more on R&D, but mostly for <b>exports</b>, not for local needs.</li>
+            </ul>
+
+            <h4>D. Drug Prices & Availability</h4>
+            <ul>
+                <li><b>Fear:</b> Prices would skyrocket (100-300%).</li>
+                <li><b>Reality:</b> Increases were modest (<span class="hl-yellow">3% to 20%</span>) likely due to price regulations.</li>
+                <li><b>Availability:</b> Patents can delay new drug launches.</li>
+                <li><b>Benefit:</b> Reduced dangerous counterfeit (fake) medicines.</li>
+            </ul>
+
+            <h4>E. Access to Knowledge</h4>
+            <ul>
+                <li>Patents do <b>not</b> pay for "adaptation" (changing tech to fit local needs).</li>
+                <li>Rigorous Copyright raises the cost of textbooks and learning materials.</li>
+            </ul>
+
+            <h3 id="policy">3. Policy Lessons for Developing Countries</h3>
+            <p><i>How should they handle IPR?</i></p>
+            <ul>
+                <li><b>Transparency:</b> Make the system clear and predictable.</li>
+                <li><span class="hl-blue">Use "Exceptions" & Loopholes:</span>
+                    <ul class="sub-point">
+                        <li><b>Patents:</b> Set high standards (don't patent weak inventions), use "Compulsory Licensing" (govt forces license in emergency), Research exemptions.</li>
+                        <li><b>Trade Secrets:</b> Keep definitions narrow.</li>
+                        <li><b>Copyrights:</b> Allow "Fair Use" for education.</li>
+                    </ul>
+                </li>
+                <li><b>Broader Strategy (Crucial):</b>
+                    <ul class="sub-point">
+                        <li>Improve investment climate.</li>
+                        <li>Build local R&D capacity in firms.</li>
+                        <li>Invest in <b>Science & Tech Education</b>.</li>
+                        <li><b>Subsidize</b> research into local adaptation.</li>
+                        <li>Regulate prices (especially medicines).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Global Policy Lessons</h4>
+            <ul>
+                <li>Create <b>"Knowledge Pools"</b>: Publicly funded science available for cheap licensing.</li>
+                <li><b>Mobility Visas:</b> Let skilled workers move around easily.</li>
+            </ul>
+        </div>
+
+        <div class="section-break">~ ~ ~ ~ ~</div>
+
+        <!-- PART 2 -->
+        <div id="part2">
+            <h2>Part 2: International Business (IB)</h2>
+            <p><i>(Source: Pearson Textbook)</i></p>
+
+            <h3>1. Key Definitions</h3>
+            <ul>
+                <li><b>International Business:</b> Trade and investment activities by firms across national borders.</li>
+                <li><b>Globalization of Markets:</b> Economies becoming integrated and dependent on each other.</li>
+                <li><b>International Trade:</b> Exchange of products (goods) AND services.</li>
+                <li><b>Exporting:</b> Selling abroad (e.g., Boeing sells planes).</li>
+                <li><b>Importing (Global Sourcing):</b> Buying from abroad (e.g., Toyota buys parts from China).</li>
+            </ul>
+            
+            <div class="box" style="background: #e8f8f5;">
+                <span class="important">Important Distinction: Investment Types</span>
+                <ul>
+                    <li><b>International Investment (FDI):</b> Transfer of assets to another country (e.g., building a factory). *Focus of this course.*</li>
+                    <li><b>International Portfolio Investment:</b> Passive ownership (buying stocks/bonds) just for financial returns.</li>
+                </ul>
+            </div>
+
+            <h3>2. The "Flows" of IB</h3>
+            <p>It's not just products! It includes flows of:</p>
+            <ul>
+                <li>Knowledge</li>
+                <li>Trade in Products</li>
+                <li>Trade in Services</li>
+                <li>Direct Investments</li>
+            </ul>
+
+            <h3>3. Service Industries are Going Global</h3>
+            <p>Many service sectors are rapidly internationalizing:</p>
+            <ul class="sub-point">
+                <li><b>Architectural/Construction:</b> building dams, airports (e.g., ABB, Bechtel).</li>
+                <li><b>Banking/Insurance:</b> (e.g., HSBC, Bank of America).</li>
+                <li><b>Education:</b> Training & publishing (e.g., Pearson, Berlitz).</li>
+                <li><b>Entertainment:</b> Movies, music (e.g., Sony, Time Warner).</li>
+                <li><b>Professional Services:</b> Legal, Accounting (e.g., McKinsey, Ernst & Young).</li>
+            </ul>
+
+            <h3 id="risks">4. The Four Risks of IB (Memorize This!)</h3>
+            <p><i>Firms face 4 major risks when going abroad:</i></p>
+
+            <div class="box" style="border-color: #f39c12;">
+                <h4>1. Cross-Cultural Risk</h4>
+                <ul>
+                    <li><b>Cultural Differences:</b> Language, religion, customs.</li>
+                    <li><b>Negotiation Patterns:</b> Mexicans are friendly/social first; Americans are assertive/fast.</li>
+                    <li><b>Decision-Making:</b> Japanese take time; Canadians are decisive ("shoot from the hip").</li>
+                    <li><b>Ethics:</b> Bribery might be accepted in some places, illegal in others.</li>
+                    <li><span class="hl-pink">Ethical Example:</span> <b>Sandblasting Jeans.</b> Factory workers die from lung disease (silicosis) to make "faded" jeans. Illegal in EU/US, but still done in poor countries.</li>
+                </ul>
+
+                <h4>2. Country Risk (Political)</h4>
+                <ul>
+                    <li><b>Govt Intervention:</b> Barriers to trade, protectionism.</li>
+                    <li><b>Bureaucracy:</b> Red tape, corruption (bribes required in Russia).</li>
+                    <li><b>IPR Issues:</b> Weak legal systems failing to protect ideas.</li>
+                    <li><b>Instability:</b> War, economic mismanagement.</li>
+                    <li><i>Examples:</i> Venezuela interfering with foreign firms; Argentina's high inflation.</li>
+                </ul>
+
+                <h4>3. Currency Risk (Financial)</h4>
+                <ul>
+                    <li><b>Currency Exposure:</b> Exchange rates change (Japanese Yen fluctuates).</li>
+                    <li><b>Asset Valuation:</b> Value of your factory drops if local currency drops.</li>
+                    <li><b>Taxation:</b> Income/sales taxes vary (US has high corporate tax).</li>
+                    <li><b>Inflation:</b> Makes pricing hard (Brazil/Turkey have high inflation).</li>
+                </ul>
+
+                <h4>4. Commercial Risk</h4>
+                <ul>
+                    <li><b>Weak Partners:</b> Your local partner fails.</li>
+                    <li><b>Operational Problems:</b> Poor execution of strategy.</li>
+                    <li><b>Timing:</b> Entering the market too early or too late.</li>
+                    <li><b>Competition:</b> Intense rivals.</li>
+                </ul>
+            </div>
+
+            <h3 id="participants">5. Who Participates?</h3>
+            <ul>
+                <li><b>MNE (Multinational Enterprise):</b> Large, wealthy, subsidiaries worldwide (Disney, Samsung, Caterpillar, Vodafone).</li>
+                <li><b>SME (Small/Medium Enterprise):</b> <span class="hl-yellow">&lt; 500 employees.</span> Make up <b>90%</b> of all firms. Increasingly active globally.</li>
+                <li><b>Born Global Firm:</b> Young, entrepreneurial startup that does IB right from the start.</li>
+                <li><b>NGOs (Non-Governmental):</b> Non-profits.
+                    <ul class="sub-point">
+                        <li><i>Examples:</i> Bill & Melinda Gates Foundation (Health/Education), CARE (Poverty), Wellcome Trust.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3 id="why">6. Why Do Firms Internationalize?</h3>
+            <ul>
+                <li><b>Growth:</b> Diversify markets (Harley-Davidson, IKEA, H&M).</li>
+                <li><b>Margins/Profit:</b> Foreign markets are often more profitable.</li>
+                <li><b>New Ideas:</b> GM learned to make small fuel-efficient cars in Europe.</li>
+                <li><b>Follow Customers:</b> Toyota suppliers went to Britain when Toyota opened a factory there.</li>
+                <li><b>Sourcing:</b> Access cheap/better factors of production (Apple sources worldwide, Sony manufactures in China).</li>
+                <li><b>Economies of Scale:</b> Bigger volume = lower cost per unit (Airbus).</li>
+                <li><b>Confront Competitors:</b> <span class="hl-blue">Haier (China)</span> came to the US to learn about and compete with <span class="hl-blue">Whirlpool</span>.</li>
+                <li><b>Relationships:</b> French firm Groupe Bull partnered with Toshiba.</li>
+            </ul>
+
+            <h3>7. Why Study IB?</h3>
+            <ul>
+                <li><b>Facilitator:</b> Connects the global economy.</li>
+                <li><b>Economic Well-being:</b> Fuels growth and living standards.</li>
+                <li><b>Competitive Advantage:</b> Good for the firm, good for YOUR career.</li>
+                <li><b>Global Corporate Citizenship:</b> Firms must be ethical (IB affects everyone).</li>
+            </ul>
+
+            <div class="box" style="border-style: dashed; border-color: #2980b9;">
+                <h4>Case Study: Facebook</h4>
+                <ul>
+                    <li><b>Global Phenomenon:</b> 1.3 Billion users (1 in 6 people).</li>
+                    <li><b>Reach:</b> 70% of users live <b>outside</b> the US.</li>
+                    <li><b>Lesson:</b> Shows how converging lifestyles & tech create global enterprises.</li>
+                </ul>
+                <hr style="border: 0; border-top: 1px dashed #aaa;">
+                <h4>Case Study: Ashley Lumb</h4>
+                <ul>
+                    <li><b>Majors:</b> Marketing & IB.</li>
+                    <li><b>Jobs:</b> Nice (France), Monte Carlo, Rome (Italian Vogue).</li>
+                    <li><b>Success Factors:</b> Hard work, <span class="hl-yellow">Networking</span> (met lots of people), Researched markets, Worked "unglamorous" jobs to stay afloat.</li>
+                    <li><b>Challenges:</b> Stepping out of comfort zone, Language barriers.</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 1.5rem; margin-top: 50px;"><b>Good luck! You got this! 🍀</b></p>
+    </div>
+
+</body>
+</html>
